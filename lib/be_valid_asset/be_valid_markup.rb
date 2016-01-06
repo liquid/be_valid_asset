@@ -99,3 +99,12 @@ module BeValidAsset
     BeValidMarkup.new(:fragment => true)
   end
 end
+if defined? Capybara::Session
+  module Capybara
+    class Session
+      def valid_markup?
+        BeValidAsset::BeValidMarkup.new(fragment: self.body)
+      end
+    end
+  end
+end
